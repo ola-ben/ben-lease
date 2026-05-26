@@ -26,3 +26,6 @@ yarn-error.log*
 
 # Vite cache
 .vite/
+
+# TS incremental build
+*.tsbuildinfo
