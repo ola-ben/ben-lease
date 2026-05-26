@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    background: #fbfaf7;
+  }
+  body {
+    @apply font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: #f5e6d8;
+    color: #0f1419;
+  }
+}
+
+@layer utilities {
+  .scroll-hide {
+    scrollbar-width: none;
+  }
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .caption {
+    @apply text-caption font-medium uppercase tracking-[0.1em] text-ink-faint;
+  }
+  .display {
+    @apply font-display;
+  }
+  .blur-bar {
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+  }
+  .divider-v {
+    width: 1px;
+    background: #e5dfd3;
+  }
+  .divider-h {
+    height: 1px;
+    background: #e5dfd3;
+  }
+  .no-tap {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
