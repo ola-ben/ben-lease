@@ -1,14 +1,15 @@
 import { Bell, ChevronRight, CreditCard, FileText, HelpCircle, Info, ShieldCheck, User as UserIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PageTransition } from '../components/layout/PageTransition';
 import { TopBar } from '../components/layout/TopBar';
 
 const menu = [
-  { label: 'Personal details', Icon: UserIcon },
-  { label: 'Documents & ID', Icon: FileText },
-  { label: 'Payment methods', Icon: CreditCard },
-  { label: 'Notifications', Icon: Bell },
-  { label: 'Help center', Icon: HelpCircle },
-  { label: 'About Ben Lease', Icon: Info },
+  { label: 'Personal details', Icon: UserIcon, to: '/profile/personal' },
+  { label: 'Documents & ID', Icon: FileText, to: '/profile/documents' },
+  { label: 'Payment methods', Icon: CreditCard, to: '/profile/payments' },
+  { label: 'Notifications', Icon: Bell, to: '/profile/notifications' },
+  { label: 'Help center', Icon: HelpCircle, to: '/profile/help' },
+  { label: 'About Ben Lease', Icon: Info, to: '/profile/about' },
 ];
 
 export const Profile = () => {
@@ -24,7 +25,7 @@ export const Profile = () => {
           <h1 className="mt-4 font-display text-[24px] font-medium leading-tight">
             Adekunle Ojo
           </h1>
-          <div className="caption mt-1">ajaniservice1@gmail.com</div>
+          <div className="caption mt-1">olaben09@gmail.com</div>
         </div>
 
         <div className="mt-6 rounded-card bg-paper p-4 shadow-rest">
@@ -50,9 +51,10 @@ export const Profile = () => {
         </div>
 
         <div className="mt-8 overflow-hidden rounded-card bg-paper shadow-rest">
-          {menu.map(({ label, Icon }, i) => (
-            <button
+          {menu.map(({ label, Icon, to }, i) => (
+            <Link
               key={label}
+              to={to}
               className={`no-tap flex h-14 w-full items-center gap-4 px-5 text-left text-[14px] ${
                 i < menu.length - 1 ? 'border-b border-sand/70' : ''
               }`}
@@ -60,7 +62,7 @@ export const Profile = () => {
               <Icon className="h-[18px] w-[18px] text-ink-soft" strokeWidth={1.7} />
               <span className="flex-1">{label}</span>
               <ChevronRight className="h-4 w-4 text-ink-faint" strokeWidth={1.8} />
-            </button>
+            </Link>
           ))}
         </div>
 

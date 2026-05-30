@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion';
-import { Search as SearchIcon, SlidersHorizontal } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Search as SearchIcon, SlidersHorizontal } from 'lucide-react';
+import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ComingSoon } from '../components/home/ComingSoon';
+import { LeaseCalculatorSheet } from '../components/home/LeaseCalculatorSheet';
+import { QuickFiltersMarquee } from '../components/home/QuickFilters';
+import { RecentlyViewed } from '../components/home/RecentlyViewed';
+import { TrustBlocks } from '../components/home/TrustBlocks';
+import { Marquee } from '../components/ui/Marquee';
+import { Footer } from '../components/layout/Footer';
 import { PageTransition } from '../components/layout/PageTransition';
 import { TopBar } from '../components/layout/TopBar';
 import { PropertyCard } from '../components/property/PropertyCard';
@@ -13,7 +20,7 @@ import {
   IconSelfCon,
 } from '../icons/CategoryIcons';
 import { neighborhoods, properties } from '../lib/mock-data';
-import type { PropertyType } from '../lib/types';
+import type { City, PropertyType } from '../lib/types';
 
 const categories: { key: PropertyType; label: string; Icon: typeof IconApartment }[] = [
   { key: 'apartment', label: 'Apartment', Icon: IconApartment },
@@ -23,27 +30,57 @@ const categories: { key: PropertyType; label: string; Icon: typeof IconApartment
   { key: 'mini-flat', label: 'Mini-flat', Icon: IconMiniFlat },
 ];
 
-const featured = properties.filter((p) => p.isFeatured);
+const threeThings = [
+  {
+    n: '01',
+    text: 'Every home is physically verified by our team before listing.',
+    reverse: false,
+  },
+  {
+    n: '02',
+    text: 'Pay rent directly. No agency fees, no caution fees, no surprises.',
+    reverse: true,
+  },
+  {
+    n: '03',
+    text: 'Lease drafted by our legal partners. Signed digitally. Yours to keep.',
+    reverse: false,
+  },
+];
 
 export const Home = () => {
   const [activeCategory, setActiveCategory] = useState<PropertyType | null>(null);
+  const [city, setCity] = useState<City>('Lagos');
+  const [calcOpen, setCalcOpen] = useState(false);
   const navigate = useNavigate();
+
+  const featured = useMemo(
+    () => properties.filter((p) => p.location.city === city && p.isFeatured),
+    [city],
+  );
 
   return (
     <PageTransition>
-      <TopBar />
+      <TopBar city={city} onCityChange={setCity} />
 
       {/* Hero */}
-      <section className="px-6 pb-8 pt-8">
+      <section className="px-6 pb-10 pt-8">
         <div className="caption">Find a home</div>
         <h1 className="mt-3 font-display text-hero font-medium text-ink">
           Homes you can{' '}
           <em className="font-display font-medium italic">settle</em> into.
         </h1>
-        <p className="mt-4 max-w-[320px] text-[15px] leading-[1.6] text-ink-soft">
+        <p className="mt-4 max-w-[320px] text-[15px] leading-[1.55] text-ink-soft">
           Verified apartments and duplexes across Lagos, Abuja, and Ibadan. No agent
           runaround.
         </p>
+        <button
+          onClick={() => setCalcOpen(true)}
+          className="no-tap mt-5 inline-flex h-9 items-center gap-1.5 rounded-btn bg-umber-soft px-3.5 text-[12px] font-medium text-umber"
+        >
+          Calculate what you can afford
+          <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+        </button>
       </section>
 
       {/* Search bar */}
@@ -71,15 +108,16 @@ export const Home = () => {
         </button>
       </section>
 
-      {/* Category row */}
-      <section className="mt-8">
-        <div className="flex gap-3 overflow-x-auto px-6 pb-1 scroll-hide">
+      {/* Category row (auto-scroll left to right) */}
+      <section className="mt-7">
+        <Marquee direction="right" duration={42} gap={12}>
           {categories.map(({ key, label, Icon }) => {
             const active = activeCategory === key;
             return (
               <motion.button
                 key={key}
                 whileTap={{ scale: 0.96 }}
+                transition={{ duration: 0.15 }}
                 onClick={() => setActiveCategory(active ? null : key)}
                 className={`no-tap flex w-[88px] flex-shrink-0 flex-col items-center justify-center gap-1.5 rounded-card py-3 transition-colors ${
                   active ? 'bg-ink text-paper' : 'bg-cream text-ink'
@@ -92,7 +130,12 @@ export const Home = () => {
               </motion.button>
             );
           })}
-        </div>
+        </Marquee>
+      </section>
+
+      {/* Quick filters (auto-scroll right to left) */}
+      <section className="mt-3">
+        <QuickFiltersMarquee />
       </section>
 
       {/* Featured */}
@@ -100,60 +143,52 @@ export const Home = () => {
         <div className="px-6">
           <div className="caption">Verified this week</div>
           <h2 className="mt-2 font-display text-section font-medium">
-            New listings in Lagos
+            New listings in {city}
           </h2>
         </div>
-        <motion.div
-          variants={{
-            hidden: {},
-            show: { transition: { delayChildren: 0.1, staggerChildren: 0.05 } },
-          }}
-          initial="hidden"
-          animate="show"
-          className="mt-5 flex gap-4 overflow-x-auto px-6 pb-2 scroll-hide"
-        >
-          {featured.map((p) => (
-            <PropertyCard key={p.id} property={p} variant="feature" />
-          ))}
-          <div className="w-1 flex-shrink-0" />
-        </motion.div>
+        {featured.length > 0 ? (
+          <motion.div
+            variants={{
+              hidden: {},
+              show: { transition: { delayChildren: 0.1, staggerChildren: 0.05 } },
+            }}
+            initial="hidden"
+            animate="show"
+            className="mt-5 flex gap-4 overflow-x-auto px-6 pb-2 pr-8 scroll-hide"
+          >
+            {featured.map((p) => (
+              <PropertyCard key={p.id} property={p} variant="feature" />
+            ))}
+          </motion.div>
+        ) : (
+          <p className="mt-4 px-6 text-[14px] text-ink-soft">
+            Fresh homes in {city} drop weekly. Check back soon.
+          </p>
+        )}
       </section>
 
-      {/* Why Ben Lease */}
-      <section className="mt-16 px-6">
+      {/* Coming soon (Abuja / Ibadan if limited) */}
+      {city !== 'Lagos' && featured.length < 3 && <ComingSoon city={city} />}
+
+      {/* Three things */}
+      <section className="mt-12 px-6">
         <div className="caption">How it works</div>
         <h2 className="mt-2 font-display text-section font-medium">
           Three things we get right.
         </h2>
 
-        <div className="mt-8 space-y-10">
-          {[
-            {
-              n: '01',
-              text: 'Every home is physically verified by our team before listing.',
-              right: true,
-            },
-            {
-              n: '02',
-              text: 'Pay rent directly. No agency fees, no caution fees, no surprises.',
-              right: false,
-            },
-            {
-              n: '03',
-              text: 'Lease drafted by our legal partners. Signed digitally. Yours to keep.',
-              right: true,
-            },
-          ].map(({ n, text, right }) => (
+        <div className="mt-6 divide-y divide-sand/70">
+          {threeThings.map(({ n, text, reverse }) => (
             <div
               key={n}
-              className={`flex items-center gap-5 ${right ? '' : 'flex-row-reverse'}`}
+              className={`flex min-h-[100px] items-center gap-5 py-6 ${reverse ? 'flex-row-reverse' : ''}`}
             >
-              <div className="flex-shrink-0">
-                <span className="font-display text-[64px] italic leading-none text-umber">
+              <div className="w-[80px] flex-shrink-0 text-center">
+                <span className="font-display text-[64px] font-medium italic leading-none text-umber">
                   {n}
                 </span>
               </div>
-              <p className={`text-[16px] leading-[1.5] text-ink ${right ? '' : 'text-right'}`}>
+              <p className={`max-w-[280px] text-[15px] leading-[1.5] text-ink ${reverse ? 'text-right' : ''}`}>
                 {text}
               </p>
             </div>
@@ -162,20 +197,19 @@ export const Home = () => {
       </section>
 
       {/* Neighborhood */}
-      <section className="mt-16 px-6">
+      <section className="mt-12 px-6">
         <div className="caption">Where to live</div>
         <h2 className="mt-2 font-display text-section font-medium">
           Lagos by neighborhood
         </h2>
 
         <div className="mt-5 space-y-3">
-          {/* Large */}
           {neighborhoods
             .filter((n) => n.size === 'large')
             .map((n) => (
               <Link
                 key={n.name}
-                to="/search"
+                to={n.slug ? `/neighborhood/${n.slug}` : '/search'}
                 className="no-tap relative block h-[200px] w-full overflow-hidden rounded-card bg-cream"
               >
                 <img
@@ -184,19 +218,18 @@ export const Home = () => {
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5 text-paper">
-                  <div className="font-display text-[22px] font-medium leading-tight">
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(12,20,16,0.55)] to-transparent" />
+                <div className="absolute bottom-3.5 left-3.5 right-3.5 text-paper">
+                  <div className="font-display text-[18px] font-medium leading-tight">
                     {n.name}
                   </div>
-                  <div className="mt-1 text-[12px] uppercase tracking-[0.1em] opacity-80">
+                  <div className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.08em] opacity-70">
                     {n.listingCount} homes
                   </div>
                 </div>
               </Link>
             ))}
 
-          {/* Small grid */}
           <div className="grid grid-cols-2 gap-3">
             {neighborhoods
               .filter((n) => n.size === 'small')
@@ -212,12 +245,12 @@ export const Home = () => {
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 text-paper">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(12,20,16,0.55)] to-transparent" />
+                  <div className="absolute bottom-3.5 left-3.5 right-3.5 text-paper">
                     <div className="font-display text-[18px] font-medium leading-tight">
                       {n.name}
                     </div>
-                    <div className="mt-0.5 text-[11px] uppercase tracking-[0.1em] opacity-80">
+                    <div className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.08em] opacity-70">
                       {n.listingCount} homes
                     </div>
                   </div>
@@ -227,16 +260,19 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Trust strip */}
-      <section className="mt-16 px-6">
-        <div className="flex items-center justify-center gap-4 py-8 text-[11px] uppercase tracking-[0.1em] text-ink-soft">
-          <span>200+ verified homes</span>
-          <span className="h-3 w-px bg-sand" />
-          <span>Direct landlord pay</span>
-          <span className="h-3 w-px bg-sand" />
-          <span>Legal docs included</span>
+      {/* Recently viewed (hides itself if empty) */}
+      <RecentlyViewed />
+
+      {/* Trust */}
+      <section className="mt-12 px-6">
+        <div className="rounded-card bg-cream">
+          <TrustBlocks />
         </div>
       </section>
+
+      <Footer />
+
+      <LeaseCalculatorSheet open={calcOpen} onClose={() => setCalcOpen(false)} />
     </PageTransition>
   );
 };

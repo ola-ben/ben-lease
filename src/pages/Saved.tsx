@@ -1,13 +1,16 @@
-import { ChevronDown, Heart } from 'lucide-react';
+import { ChevronDown, GitCompare, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageTransition } from '../components/layout/PageTransition';
 import { TopBar } from '../components/layout/TopBar';
 import { VerifiedBadge } from '../components/ui/VerifiedBadge';
 import { properties, savedIds } from '../lib/mock-data';
 import { formatNaira } from '../lib/format';
+import { useSaved } from '../lib/storage';
 
 export const Saved = () => {
-  const saved = properties.filter((p) => savedIds.includes(p.id));
+  const { ids } = useSaved();
+  const merged = [...new Set([...ids, ...savedIds])];
+  const saved = properties.filter((p) => merged.includes(p.id));
 
   return (
     <PageTransition>
@@ -27,11 +30,24 @@ export const Saved = () => {
       ) : (
         <>
           <div className="flex items-center justify-between px-6 pb-3">
-            <div className="caption">{saved.length} homes</div>
+            <div className="caption">{saved.length} home{saved.length === 1 ? '' : 's'}</div>
             <button className="flex items-center gap-1 text-[12px] font-medium text-ink-soft">
               Recently saved <ChevronDown className="h-3 w-3" strokeWidth={2} />
             </button>
           </div>
+
+          {saved.length >= 2 && (
+            <div className="px-6 pb-4">
+              <Link
+                to={`/compare?ids=${saved.slice(0, 3).map((p) => p.id).join(',')}`}
+                className="no-tap flex h-12 w-full items-center justify-center gap-2 rounded-btn bg-ink text-[13px] font-medium text-paper"
+              >
+                <GitCompare className="h-4 w-4" strokeWidth={1.8} />
+                Compare {Math.min(saved.length, 3)} saved homes
+              </Link>
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-3 px-6 pb-6">
             {saved.map((p) => (
               <Link

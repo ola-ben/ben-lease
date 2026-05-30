@@ -7,7 +7,7 @@
   body,
   #root {
     height: 100%;
-    background: #fbfaf7;
+    background: #fafaf7;
   }
   body {
     @apply font-sans text-ink antialiased;
@@ -15,8 +15,8 @@
     -webkit-font-smoothing: antialiased;
   }
   ::selection {
-    background: #f5e6d8;
-    color: #0f1419;
+    background: #dcebe2;
+    color: #0c1410;
   }
 }
 
@@ -48,4 +48,93 @@
   .no-tap {
     -webkit-tap-highlight-color: transparent;
   }
+}
+
+.bl-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #e5dfd3;
+  border-radius: 999px;
+  outline: none;
+}
+.bl-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #0f1419;
+  border: 3px solid #fbfaf7;
+  box-shadow: 0 2px 6px rgba(15, 20, 25, 0.2);
+  cursor: pointer;
+}
+.bl-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #0f1419;
+  border: 3px solid #fbfaf7;
+  box-shadow: 0 2px 6px rgba(15, 20, 25, 0.2);
+  cursor: pointer;
+}
+
+@keyframes bl-marquee-left {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes bl-marquee-right {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+.bl-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.bl-marquee-left { animation: bl-marquee-left linear infinite; }
+.bl-marquee-right { animation: bl-marquee-right linear infinite; }
+.bl-marquee-pause:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .bl-marquee-left, .bl-marquee-right { animation: none; }
+}
+
+.bl-pin-icon { background: transparent; border: 0; }
+.bl-pin {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fafaf7;
+  color: #0c1410;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(12, 20, 16, 0.18);
+  border: 1px solid #d9e0d6;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  transition: transform 120ms ease;
+}
+.bl-pin::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -4px;
+  border: 4px solid transparent;
+  border-top-color: #fafaf7;
+}
+.bl-pin-on {
+  background: #0c1410;
+  color: #fafaf7;
+  border-color: #0c1410;
+}
+.bl-pin-on::after {
+  border-top-color: #0c1410;
+}
+.leaflet-container {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #ecefea;
 }

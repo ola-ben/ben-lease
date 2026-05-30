@@ -5,18 +5,18 @@ export default {
     extend: {
       colors: {
         ink: {
-          DEFAULT: '#0F1419',
+          DEFAULT: '#0C1410',
           soft: '#5A6470',
           faint: '#9AA3AE',
         },
-        paper: '#FBFAF7',
-        cream: '#F2EEE7',
-        sand: '#E5DFD3',
+        paper: '#FAFAF7',
+        cream: '#ECEFEA',
+        sand: '#D9E0D6',
         umber: {
-          DEFAULT: '#8B4513',
-          soft: '#F5E6D8',
+          DEFAULT: '#2D6A4F',
+          soft: '#DCEBE2',
         },
-        verified: '#2D6A4F',
+        verified: '#1F4D38',
       },
       fontFamily: {
         display: ['Fraunces', 'Georgia', 'serif'],
@@ -37,11 +37,11 @@ export default {
         btn: '12px',
       },
       boxShadow: {
-        rest: '0 1px 2px rgba(15,20,25,0.04), 0 4px 12px rgba(15,20,25,0.04)',
-        elevated: '0 12px 40px rgba(15,20,25,0.12)',
+        rest: '0 1px 2px rgba(12,20,16,0.04), 0 4px 12px rgba(12,20,16,0.04)',
+        elevated: '0 12px 40px rgba(12,20,16,0.12)',
       },
       maxWidth: {
-        phone: '480px',
+        phone: '430px',
       },
     },
   },

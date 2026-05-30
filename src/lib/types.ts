@@ -14,6 +14,13 @@ export interface Landlord {
   avatarTint: string;
 }
 
+export interface Utilities {
+  powerHoursDay: number;
+  generatorBackup: 'none' | 'partial' | 'full';
+  borehole: boolean;
+  internet: string[];
+}
+
 export interface Property {
   id: string;
   name: string;
@@ -23,7 +30,10 @@ export interface Property {
     city: City;
     landmark: string;
     distanceKm: number;
+    lat: number;
+    lng: number;
   };
+  utilities?: Utilities;
   pricePerYear: number;
   serviceCharge: number;
   bedrooms: number;
@@ -35,7 +45,10 @@ export interface Property {
   landlord: Landlord;
   verifiedAt: string;
   images: string[];
+  videoId?: string;
+  videoDurationSec?: number;
   isFeatured: boolean;
+  isNegotiable?: boolean;
   description: string[];
   nearby: { name: string; distanceKm: number }[];
   testimonial?: { quote: string; author: string };
@@ -62,4 +75,23 @@ export interface Neighborhood {
   listingCount: number;
   image: string;
   size: 'large' | 'small';
+  slug?: string;
+}
+
+export interface NeighborhoodGuide {
+  slug: string;
+  name: string;
+  city: City;
+  tagline: string;
+  hero: string;
+  intro: string;
+  characterParas: string[];
+  vibes: string[];
+  pros: string[];
+  watchouts: string[];
+  averageRent: { type: string; price: string }[];
+  goodFor: string[];
+  commute: { to: string; time: string }[];
+  spots: { kind: string; name: string }[];
+  coords: { lat: number; lng: number };
 }
