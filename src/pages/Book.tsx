@@ -157,7 +157,7 @@ export const Book = () => {
         </div>
       </header>
 
-      <div className="px-6 pb-32 pt-2">
+      <div className="px-6 pb-32 pt-2 lg:mx-auto lg:max-w-2xl lg:pb-16 lg:pt-8">
         {/* Property card */}
         <div className="flex gap-3 rounded-card bg-paper p-3 shadow-rest">
           <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-image bg-cream">
@@ -310,7 +310,7 @@ export const Book = () => {
         )}
       </div>
 
-      <div className="fixed inset-x-0 bottom-16 z-20 mx-auto max-w-phone border-t border-sand/80 bg-paper px-6 py-3">
+      <div className="fixed inset-x-0 bottom-16 z-20 mx-auto max-w-phone border-t border-sand/80 bg-paper px-6 py-3 lg:static lg:mx-auto lg:max-w-2xl lg:border-0 lg:py-6">
         <Button
           full
           size="lg"

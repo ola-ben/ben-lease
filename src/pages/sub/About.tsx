@@ -4,7 +4,7 @@ import { SubPageHeader } from '../../components/layout/SubPageHeader';
 export const About = () => (
   <PageTransition>
     <SubPageHeader eyebrow="Our story" title="Homes you can settle into." />
-    <div className="px-6 pb-10">
+    <div className="px-6 pb-10 lg:mx-auto lg:max-w-2xl lg:pb-16">
       <p className="-mt-3 text-[16px] leading-[1.6] text-ink">
         Ben Lease was started in 2026 by a small team in Lagos who were tired of paying
         agency fees, caution fees, and inspection fees just to see a flat that turned

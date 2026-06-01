@@ -39,7 +39,7 @@ const terms = [
 export const LeaseTerms = () => (
   <PageTransition>
     <SubPageHeader eyebrow="The basics" title="Lease terms, explained." />
-    <div className="px-6 pb-10">
+    <div className="px-6 pb-10 lg:mx-auto lg:max-w-2xl lg:pb-16">
       <p className="-mt-3 text-[15px] leading-[1.6] text-ink-soft">
         Renting in Nigeria comes with its own vocabulary. Here's what each line on your
         lease actually means.

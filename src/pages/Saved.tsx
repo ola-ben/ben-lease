@@ -15,9 +15,9 @@ export const Saved = () => {
   return (
     <PageTransition>
       <TopBar />
-      <div className="px-6 pb-4 pt-6">
+      <div className="px-6 pb-4 pt-6 lg:mx-auto lg:max-w-7xl lg:px-10 lg:pt-12">
         <div className="caption">Your shortlist</div>
-        <h1 className="mt-2 font-display text-section font-medium">Saved homes</h1>
+        <h1 className="mt-2 font-display text-section font-medium lg:text-[34px]">Saved homes</h1>
       </div>
 
       {saved.length === 0 ? (
@@ -29,7 +29,7 @@ export const Saved = () => {
         </div>
       ) : (
         <>
-          <div className="flex items-center justify-between px-6 pb-3">
+          <div className="flex items-center justify-between px-6 pb-3 lg:mx-auto lg:max-w-7xl lg:px-10">
             <div className="caption">{saved.length} home{saved.length === 1 ? '' : 's'}</div>
             <button className="flex items-center gap-1 text-[12px] font-medium text-ink-soft">
               Recently saved <ChevronDown className="h-3 w-3" strokeWidth={2} />
@@ -37,10 +37,10 @@ export const Saved = () => {
           </div>
 
           {saved.length >= 2 && (
-            <div className="px-6 pb-4">
+            <div className="px-6 pb-4 lg:mx-auto lg:max-w-7xl lg:px-10">
               <Link
                 to={`/compare?ids=${saved.slice(0, 3).map((p) => p.id).join(',')}`}
-                className="no-tap flex h-12 w-full items-center justify-center gap-2 rounded-btn bg-ink text-[13px] font-medium text-paper"
+                className="no-tap flex h-12 w-full items-center justify-center gap-2 rounded-btn bg-ink text-[13px] font-medium text-paper lg:inline-flex lg:w-auto lg:px-5"
               >
                 <GitCompare className="h-4 w-4" strokeWidth={1.8} />
                 Compare {Math.min(saved.length, 3)} saved homes
@@ -48,7 +48,7 @@ export const Saved = () => {
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-3 px-6 pb-6">
+          <div className="grid grid-cols-2 gap-3 px-6 pb-6 lg:mx-auto lg:max-w-7xl lg:grid-cols-4 lg:gap-5 lg:px-10 lg:pb-16">
             {saved.map((p) => (
               <Link
                 key={p.id}

@@ -11,7 +11,7 @@ export const Contact = () => {
   return (
     <PageTransition>
       <SubPageHeader eyebrow="Talk to us" title="Get in touch." />
-      <div className="px-6 pb-10">
+      <div className="px-6 pb-10 lg:mx-auto lg:max-w-2xl lg:pb-16">
         <p className="-mt-3 text-[15px] leading-[1.6] text-ink-soft">
           We answer every message. Pick whichever channel suits you.
         </p>

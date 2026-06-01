@@ -159,7 +159,7 @@ export const PropertyCard = ({ property: p, variant = 'feature' }: Props) => {
       <motion.div {...press}>
         <Link
           to={`/listing/${p.id}`}
-          className="no-tap flex h-[380px] w-[280px] flex-col overflow-hidden rounded-card bg-paper shadow-rest"
+          className="no-tap flex h-[380px] w-[280px] flex-col overflow-hidden rounded-card bg-paper shadow-rest lg:h-auto lg:w-full"
         >
           <div className="relative h-[260px] w-full overflow-hidden rounded-t-card">
             <LazyImage

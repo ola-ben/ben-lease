@@ -50,7 +50,7 @@ export const Notifications = () => {
   return (
     <PageTransition>
       <SubPageHeader eyebrow="Your account" title="Notifications" />
-      <div className="px-6 pb-8">
+      <div className="px-6 pb-8 lg:mx-auto lg:max-w-2xl lg:pb-16">
         <p className="-mt-4 mb-6 text-[14px] leading-[1.55] text-ink-soft">
           You're in control. We'll only message you about things you've turned on.
         </p>

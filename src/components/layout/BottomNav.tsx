@@ -13,7 +13,7 @@ export const BottomNav = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto h-16 max-w-phone border-t border-sand/80 bg-paper">
+    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto h-16 max-w-phone border-t border-sand/80 bg-paper lg:hidden">
       <div className="grid h-full grid-cols-4">
         {tabs.map(({ to, label, icon: Icon, match }) => {
           const active = match(pathname);

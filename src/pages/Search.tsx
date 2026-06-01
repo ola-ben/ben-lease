@@ -144,8 +144,8 @@ export const Search = () => {
 
   return (
     <PageTransition>
-      <header className="sticky top-0 z-30 blur-bar bg-paper/85">
-        <div className="flex h-14 items-center gap-3 px-6">
+      <header className="sticky top-0 z-30 blur-bar bg-paper/85 lg:top-16 lg:border-b lg:border-sand/70">
+        <div className="flex h-14 items-center gap-3 px-6 lg:mx-auto lg:max-w-7xl lg:px-10">
           <button onClick={() => navigate(-1)} className="no-tap -ml-2 p-2">
             <ArrowLeft className="h-5 w-5" strokeWidth={1.8} />
           </button>
@@ -178,7 +178,7 @@ export const Search = () => {
           </button>
         </div>
 
-        <div className="flex gap-2 overflow-x-auto px-6 pb-3 pr-8 scroll-hide">
+        <div className="flex gap-2 overflow-x-auto px-6 pb-3 pr-8 scroll-hide lg:mx-auto lg:max-w-7xl lg:px-10">
           <FilterChip
             label="Budget"
             value={filters.budgetMax ? `Under ${formatNairaShort(filters.budgetMax)}` : null}
@@ -239,7 +239,7 @@ export const Search = () => {
         </div>
       </header>
 
-      <div className="flex items-center justify-between gap-3 px-6 pt-5">
+      <div className="flex items-center justify-between gap-3 px-6 pt-5 lg:mx-auto lg:max-w-7xl lg:px-10">
         <div className="caption flex-1">
           {filtered.length} home{filtered.length === 1 ? '' : 's'}
           {filters.city && ` in ${filters.city}`}
@@ -305,9 +305,9 @@ export const Search = () => {
           }}
           initial="hidden"
           animate="show"
-          className="space-y-4 px-6 py-5"
+          className="space-y-4 px-6 py-5 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-6 lg:space-y-0 lg:px-10 lg:py-8"
         >
-          {filtered.map((p, i) => (
+          {filtered.map((p) => (
             <motion.div
               key={p.id}
               variants={{
@@ -315,7 +315,9 @@ export const Search = () => {
                 show: { opacity: 1, y: 0 },
               }}
             >
-              <PropertyCard property={p} variant={i % 3 === 0 ? 'wide' : 'compact'} />
+              <div className="lg:[&_a]:h-full">
+                <PropertyCard property={p} variant="wide" />
+              </div>
             </motion.div>
           ))}
         </motion.div>

@@ -25,7 +25,7 @@ const docs = [
 export const Documents = () => (
   <PageTransition>
     <SubPageHeader eyebrow="Your account" title="Documents & ID" />
-    <div className="px-6 pb-8">
+    <div className="px-6 pb-8 lg:mx-auto lg:max-w-2xl lg:pb-16">
       <p className="-mt-4 mb-5 text-[14px] leading-[1.55] text-ink-soft">
         Upload once. Reuse across every application.
       </p>

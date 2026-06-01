@@ -69,7 +69,7 @@ export const Listing = () => {
   return (
     <PageTransition>
       {/* Hero carousel */}
-      <div ref={containerRef} className="relative h-[380px] w-full overflow-hidden bg-cream">
+      <div ref={containerRef} className="relative h-[380px] w-full overflow-hidden bg-cream lg:h-[520px]">
         <motion.div
           className="flex h-full"
           drag={slideW > 0 ? 'x' : false}
@@ -176,7 +176,7 @@ export const Listing = () => {
         />
       )}
 
-      <div className="px-6 pb-32 pt-6">
+      <div className="px-6 pb-32 pt-6 lg:mx-auto lg:max-w-3xl lg:pb-16 lg:pt-12">
         <h1 className="font-display text-[28px] font-medium leading-[1.1]">
           {property.name}
         </h1>
@@ -359,6 +359,14 @@ export const Listing = () => {
           </div>
         </div>
 
+        {/* Desktop Apply CTA */}
+        <Link
+          to={`/apply/${property.id}`}
+          className="no-tap mt-10 hidden h-14 w-full items-center justify-center rounded-btn bg-ink text-[15px] font-medium text-paper lg:flex"
+        >
+          Apply to lease — {formatNaira(property.pricePerYear)}/year
+        </Link>
+
         {/* Testimonial */}
         {property.testimonial && (
           <div className="mt-10">
@@ -371,8 +379,8 @@ export const Listing = () => {
         )}
       </div>
 
-      {/* Sticky bottom CTA */}
-      <div className="fixed inset-x-0 bottom-16 z-20 mx-auto max-w-phone border-t border-sand/80 bg-paper px-6 py-3">
+      {/* Sticky bottom CTA — mobile only */}
+      <div className="fixed inset-x-0 bottom-16 z-20 mx-auto max-w-phone border-t border-sand/80 bg-paper px-6 py-3 lg:hidden">
         <div className="flex items-center justify-between gap-3">
           <div>
             <div className="font-semibold text-[16px]">{formatNaira(property.pricePerYear)}</div>

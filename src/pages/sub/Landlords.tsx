@@ -24,7 +24,7 @@ const benefits = [
 export const Landlords = () => (
   <PageTransition>
     <SubPageHeader eyebrow="For landlords" title="List a home with us." />
-    <div className="px-6 pb-10">
+    <div className="px-6 pb-10 lg:mx-auto lg:max-w-2xl lg:pb-16">
       <p className="-mt-3 text-[15px] leading-[1.6] text-ink-soft">
         A small, simple commission. Tenants who've been verified. Lease drafted by
         lawyers. We do the parts most landlords hate.

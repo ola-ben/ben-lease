@@ -27,7 +27,7 @@ const steps = [
 export const Verification = () => (
   <PageTransition>
     <SubPageHeader eyebrow="How it works" title="How verification works." />
-    <div className="px-6 pb-10">
+    <div className="px-6 pb-10 lg:mx-auto lg:max-w-2xl lg:pb-16">
       <p className="-mt-3 text-[15px] leading-[1.6] text-ink-soft">
         Most rental scams in Nigeria succeed because nobody ever visits the home.
         Verification is the single most important thing we do.

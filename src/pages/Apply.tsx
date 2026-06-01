@@ -46,7 +46,7 @@ export const Apply = () => {
         </div>
       </header>
 
-      <div className="px-6 pb-32 pt-4">
+      <div className="px-6 pb-32 pt-4 lg:mx-auto lg:max-w-2xl lg:pb-16 lg:pt-10">
         <div className="caption">Step {step + 1} of 4</div>
 
         {step === 0 && <Personal />}
@@ -55,7 +55,7 @@ export const Apply = () => {
         {step === 3 && <Review propertyName={property.name} price={property.pricePerYear} />}
       </div>
 
-      <div className="fixed inset-x-0 bottom-16 z-20 mx-auto max-w-phone border-t border-sand/80 bg-paper px-6 py-3">
+      <div className="fixed inset-x-0 bottom-16 z-20 mx-auto max-w-phone border-t border-sand/80 bg-paper px-6 py-3 lg:static lg:mx-auto lg:max-w-2xl lg:border-0 lg:py-6">
         <Button full size="lg" onClick={next}>
           {step === 3 ? 'Submit application' : 'Continue'}
         </Button>

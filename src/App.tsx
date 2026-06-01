@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { BottomNav } from './components/layout/BottomNav';
 import { ScrollToTop } from './components/layout/ScrollToTop';
+import { TopNav } from './components/layout/TopNav';
 import { LaunchPopup, useLaunchPopup } from './components/marketing/LaunchPopup';
 import { Home } from './pages/Home';
 import { Search } from './pages/Search';
@@ -45,8 +46,9 @@ const App = () => {
   const dismissPopup = () => setPopupOpen(false);
 
   return (
-    <div className="min-h-full bg-cream sm:py-0">
-      <div className="relative mx-auto min-h-screen max-w-phone bg-paper pb-20 shadow-[0_0_60px_rgba(12,20,16,0.06)]">
+    <div className="min-h-full bg-cream lg:bg-paper">
+      <TopNav />
+      <div className="relative mx-auto min-h-screen max-w-phone bg-paper pb-20 shadow-[0_0_60px_rgba(12,20,16,0.06)] lg:max-w-none lg:bg-paper lg:pb-0 lg:shadow-none">
         <ScrollToTop />
         <LaunchPopup open={popupOpen} onClose={dismissPopup} />
         <AnimatePresence mode="wait" initial={false}>

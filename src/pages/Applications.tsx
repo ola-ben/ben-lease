@@ -24,12 +24,12 @@ export const Applications = () => {
   return (
     <PageTransition>
       <TopBar />
-      <div className="px-6 pb-8 pt-6">
+      <div className="px-6 pb-8 pt-6 lg:mx-auto lg:max-w-3xl lg:pt-12">
         <div className="caption">Your activity</div>
         <h1 className="mt-2 font-display text-section font-medium">Applications</h1>
       </div>
 
-      <div className="px-6">
+      <div className="px-6 lg:mx-auto lg:max-w-3xl">
         <div className="relative flex gap-6 border-b border-sand">
           {(['active', 'past'] as const).map((t) => (
             <button
@@ -50,7 +50,7 @@ export const Applications = () => {
         </div>
       </div>
 
-      <div className="space-y-3 px-6 py-6">
+      <div className="space-y-3 px-6 py-6 lg:mx-auto lg:max-w-3xl">
         {list.length === 0 ? (
           <p className="py-16 text-center text-[14px] text-ink-soft">
             No applications yet. Browse homes to start.

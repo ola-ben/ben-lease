@@ -17,7 +17,7 @@ export const Profile = () => {
     <PageTransition>
       <TopBar />
 
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-6 lg:mx-auto lg:max-w-2xl lg:pt-12">
         <div className="flex flex-col items-center text-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-umber-soft font-display text-[28px] text-umber">
             A

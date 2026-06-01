@@ -22,7 +22,7 @@ export const TopBar = ({ city = 'Lagos', onCityChange }: Props) => {
 
   return (
     <header
-      className={`sticky top-0 z-30 h-14 transition-colors ${
+      className={`sticky top-0 z-30 h-14 transition-colors lg:hidden ${
         scrolled ? 'blur-bar bg-paper/80' : 'bg-paper'
       }`}
     >

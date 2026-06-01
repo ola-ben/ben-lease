@@ -5,7 +5,7 @@ import { SubPageHeader } from '../../components/layout/SubPageHeader';
 export const Payments = () => (
   <PageTransition>
     <SubPageHeader eyebrow="Your account" title="Payment methods" />
-    <div className="px-6 pb-8">
+    <div className="px-6 pb-8 lg:mx-auto lg:max-w-2xl lg:pb-16">
       <p className="-mt-4 mb-5 text-[14px] leading-[1.55] text-ink-soft">
         Rent is paid directly to the landlord. We just provide the rails — secured by
         Paystack and Flutterwave.

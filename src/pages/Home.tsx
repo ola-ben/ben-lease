@@ -64,19 +64,19 @@ export const Home = () => {
       <TopBar city={city} onCityChange={setCity} />
 
       {/* Hero */}
-      <section className="px-6 pb-10 pt-8">
+      <section className="px-6 pb-10 pt-8 lg:mx-auto lg:max-w-7xl lg:px-10 lg:pb-16 lg:pt-20">
         <div className="caption">Find a home</div>
-        <h1 className="mt-3 font-display text-hero font-medium text-ink">
+        <h1 className="mt-3 font-display text-hero font-medium text-ink lg:text-[80px] lg:leading-[1.02] lg:tracking-[-0.03em]">
           Homes you can{' '}
           <em className="font-display font-medium italic">settle</em> into.
         </h1>
-        <p className="mt-4 max-w-[320px] text-[15px] leading-[1.55] text-ink-soft">
+        <p className="mt-4 max-w-[320px] text-[15px] leading-[1.55] text-ink-soft lg:mt-6 lg:max-w-[520px] lg:text-[18px] lg:leading-[1.5]">
           Verified apartments and duplexes across Lagos, Abuja, and Ibadan. No agent
           runaround.
         </p>
         <button
           onClick={() => setCalcOpen(true)}
-          className="no-tap mt-5 inline-flex h-9 items-center gap-1.5 rounded-btn bg-umber-soft px-3.5 text-[12px] font-medium text-umber"
+          className="no-tap mt-5 inline-flex h-9 items-center gap-1.5 rounded-btn bg-umber-soft px-3.5 text-[12px] font-medium text-umber lg:mt-7 lg:h-11 lg:px-4 lg:text-[13px]"
         >
           Calculate what you can afford
           <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
@@ -84,10 +84,10 @@ export const Home = () => {
       </section>
 
       {/* Search bar */}
-      <section className="px-6">
+      <section className="px-6 lg:mx-auto lg:max-w-3xl lg:px-10">
         <button
           onClick={() => navigate('/search')}
-          className="no-tap flex h-14 w-full items-center rounded-btn bg-cream px-4 text-left"
+          className="no-tap flex h-14 w-full items-center rounded-btn bg-cream px-4 text-left lg:h-16"
         >
           <SearchIcon className="h-[18px] w-[18px] flex-shrink-0 text-ink-soft" strokeWidth={1.8} />
           <div className="ml-3 flex flex-1 items-center">
@@ -139,10 +139,10 @@ export const Home = () => {
       </section>
 
       {/* Featured */}
-      <section className="mt-12">
-        <div className="px-6">
+      <section className="mt-12 lg:mx-auto lg:mt-20 lg:max-w-7xl lg:px-10">
+        <div className="px-6 lg:px-0">
           <div className="caption">Verified this week</div>
-          <h2 className="mt-2 font-display text-section font-medium">
+          <h2 className="mt-2 font-display text-section font-medium lg:text-[34px]">
             New listings in {city}
           </h2>
         </div>
@@ -154,14 +154,14 @@ export const Home = () => {
             }}
             initial="hidden"
             animate="show"
-            className="mt-5 flex gap-4 overflow-x-auto px-6 pb-2 pr-8 scroll-hide"
+            className="mt-5 flex gap-4 overflow-x-auto px-6 pb-2 pr-8 scroll-hide lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pr-0"
           >
             {featured.map((p) => (
               <PropertyCard key={p.id} property={p} variant="feature" />
             ))}
           </motion.div>
         ) : (
-          <p className="mt-4 px-6 text-[14px] text-ink-soft">
+          <p className="mt-4 px-6 text-[14px] text-ink-soft lg:px-0">
             Fresh homes in {city} drop weekly. Check back soon.
           </p>
         )}
@@ -171,24 +171,24 @@ export const Home = () => {
       {city !== 'Lagos' && featured.length < 3 && <ComingSoon city={city} />}
 
       {/* Three things */}
-      <section className="mt-12 px-6">
+      <section className="mt-12 px-6 lg:mx-auto lg:mt-24 lg:max-w-7xl lg:px-10">
         <div className="caption">How it works</div>
-        <h2 className="mt-2 font-display text-section font-medium">
+        <h2 className="mt-2 font-display text-section font-medium lg:text-[34px]">
           Three things we get right.
         </h2>
 
-        <div className="mt-6 divide-y divide-sand/70">
+        <div className="mt-6 divide-y divide-sand/70 lg:mt-10 lg:grid lg:grid-cols-3 lg:gap-10 lg:divide-y-0">
           {threeThings.map(({ n, text, reverse }) => (
             <div
               key={n}
-              className={`flex min-h-[100px] items-center gap-5 py-6 ${reverse ? 'flex-row-reverse' : ''}`}
+              className={`flex min-h-[100px] items-center gap-5 py-6 lg:block lg:py-0 ${reverse ? 'flex-row-reverse lg:flex-row' : ''}`}
             >
-              <div className="w-[80px] flex-shrink-0 text-center">
-                <span className="font-display text-[64px] font-medium italic leading-none text-umber">
+              <div className="w-[80px] flex-shrink-0 text-center lg:w-auto lg:text-left">
+                <span className="font-display text-[64px] font-medium italic leading-none text-umber lg:text-[80px]">
                   {n}
                 </span>
               </div>
-              <p className={`max-w-[280px] text-[15px] leading-[1.5] text-ink ${reverse ? 'text-right' : ''}`}>
+              <p className={`max-w-[280px] text-[15px] leading-[1.5] text-ink lg:mt-4 lg:max-w-none lg:text-left lg:text-[16px] lg:leading-[1.55] ${reverse ? 'text-right' : ''}`}>
                 {text}
               </p>
             </div>
@@ -197,20 +197,20 @@ export const Home = () => {
       </section>
 
       {/* Neighborhood */}
-      <section className="mt-12 px-6">
+      <section className="mt-12 px-6 lg:mx-auto lg:mt-24 lg:max-w-7xl lg:px-10">
         <div className="caption">Where to live</div>
-        <h2 className="mt-2 font-display text-section font-medium">
+        <h2 className="mt-2 font-display text-section font-medium lg:text-[34px]">
           Lagos by neighborhood
         </h2>
 
-        <div className="mt-5 space-y-3">
+        <div className="mt-5 space-y-3 lg:mt-10 lg:grid lg:grid-cols-4 lg:gap-5 lg:space-y-0">
           {neighborhoods
             .filter((n) => n.size === 'large')
             .map((n) => (
               <Link
                 key={n.name}
                 to={n.slug ? `/neighborhood/${n.slug}` : '/search'}
-                className="no-tap relative block h-[200px] w-full overflow-hidden rounded-card bg-cream"
+                className="no-tap relative block h-[200px] w-full overflow-hidden rounded-card bg-cream lg:col-span-2 lg:h-[280px]"
               >
                 <img
                   src={n.image}
@@ -230,14 +230,14 @@ export const Home = () => {
               </Link>
             ))}
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 lg:contents">
             {neighborhoods
               .filter((n) => n.size === 'small')
               .map((n) => (
                 <Link
                   key={n.name}
-                  to="/search"
-                  className="no-tap relative block h-[140px] overflow-hidden rounded-card bg-cream"
+                  to={n.slug ? `/neighborhood/${n.slug}` : '/search'}
+                  className="no-tap relative block h-[140px] overflow-hidden rounded-card bg-cream lg:h-[280px]"
                 >
                   <img
                     src={n.image}
@@ -264,8 +264,8 @@ export const Home = () => {
       <RecentlyViewed />
 
       {/* Trust */}
-      <section className="mt-12 px-6">
-        <div className="rounded-card bg-cream">
+      <section className="mt-12 px-6 lg:mx-auto lg:mt-24 lg:max-w-7xl lg:px-10">
+        <div className="rounded-card bg-cream lg:py-4">
           <TrustBlocks />
         </div>
       </section>

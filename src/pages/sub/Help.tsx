@@ -31,7 +31,7 @@ export const Help = () => {
   return (
     <PageTransition>
       <SubPageHeader eyebrow="Help center" title="How can we help?" />
-      <div className="px-6 pb-8">
+      <div className="px-6 pb-8 lg:mx-auto lg:max-w-2xl lg:pb-16">
         <div className="space-y-2">
           <div className="caption mb-2">Frequent questions</div>
           {faqs.map((f, i) => {
