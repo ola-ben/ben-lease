@@ -64,48 +64,73 @@ export const Home = () => {
       <TopBar city={city} onCityChange={setCity} />
 
       {/* Hero */}
-      <section className="px-6 pb-10 pt-8 lg:mx-auto lg:max-w-7xl lg:px-10 lg:pb-16 lg:pt-20">
-        <div className="caption">Find a home</div>
-        <h1 className="mt-3 font-display text-hero font-medium text-ink lg:text-[80px] lg:leading-[1.02] lg:tracking-[-0.03em]">
-          Homes you can{' '}
-          <em className="font-display font-medium italic">settle</em> into.
-        </h1>
-        <p className="mt-4 max-w-[320px] text-[15px] leading-[1.55] text-ink-soft lg:mt-6 lg:max-w-[520px] lg:text-[18px] lg:leading-[1.5]">
-          Verified apartments and duplexes across Lagos, Abuja, and Ibadan. No agent
-          runaround.
-        </p>
-        <button
-          onClick={() => setCalcOpen(true)}
-          className="no-tap mt-5 inline-flex h-9 items-center gap-1.5 rounded-btn bg-umber-soft px-3.5 text-[12px] font-medium text-umber lg:mt-7 lg:h-11 lg:px-4 lg:text-[13px]"
-        >
-          Calculate what you can afford
-          <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
-        </button>
-      </section>
-
-      {/* Search bar */}
-      <section className="px-6 lg:mx-auto lg:max-w-3xl lg:px-10">
-        <button
-          onClick={() => navigate('/search')}
-          className="no-tap flex h-14 w-full items-center rounded-btn bg-cream px-4 text-left lg:h-16"
-        >
-          <SearchIcon className="h-[18px] w-[18px] flex-shrink-0 text-ink-soft" strokeWidth={1.8} />
-          <div className="ml-3 flex flex-1 items-center">
-            <div className="flex flex-1 flex-col">
-              <span className="caption text-[10px] tracking-[0.1em]">Area</span>
-              <span className="text-[13px] text-ink-soft">Lekki, Yaba, Maitama...</span>
-            </div>
-            <div className="divider-v mx-3 h-8" />
-            <div className="flex flex-1 flex-col">
-              <span className="caption text-[10px] tracking-[0.1em]">Budget</span>
-              <span className="text-[13px] text-ink-soft">₦500k – ₦5M</span>
-            </div>
-          </div>
-          <SlidersHorizontal
-            className="ml-2 h-[18px] w-[18px] flex-shrink-0 text-ink-soft"
-            strokeWidth={1.8}
+      <section className="relative overflow-hidden">
+        {/* Background image + paper gradient overlay */}
+        <div className="pointer-events-none absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1800&q=80"
+            alt=""
+            className="h-full w-full object-cover opacity-80 lg:opacity-100"
+            loading="eager"
           />
-        </button>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-b from-paper/60 via-paper/55 to-paper lg:bg-gradient-to-r lg:from-paper/90 lg:via-paper/40 lg:to-transparent"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative px-6 pb-12 pt-10 lg:mx-auto lg:max-w-7xl lg:px-10 lg:pb-24 lg:pt-28">
+          <div className="lg:max-w-[680px]">
+            <div className="caption">Find a home</div>
+            <h1 className="mt-3 font-display text-hero font-medium text-ink lg:text-[80px] lg:leading-[1.02] lg:tracking-[-0.03em]">
+              Homes you can{' '}
+              <em className="font-display font-medium italic">settle</em> into.
+            </h1>
+            <p className="mt-4 max-w-[320px] text-[15px] leading-[1.55] text-ink-soft lg:mt-6 lg:max-w-[520px] lg:text-[18px] lg:leading-[1.5]">
+              Verified apartments and duplexes across Lagos, Abuja, and Ibadan. No agent
+              runaround.
+            </p>
+            <button
+              onClick={() => setCalcOpen(true)}
+              className="no-tap mt-5 inline-flex h-9 items-center gap-1.5 rounded-btn bg-umber-soft px-3.5 text-[12px] font-medium text-umber lg:mt-7 lg:h-11 lg:px-4 lg:text-[13px]"
+            >
+              Calculate what you can afford
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+            </button>
+
+            {/* Search bar — inside the hero */}
+            <button
+              onClick={() => navigate('/search')}
+              className="no-tap mt-8 flex h-14 w-full items-center rounded-btn bg-paper/95 px-4 text-left shadow-rest backdrop-blur-sm lg:mt-10 lg:h-16"
+            >
+              <SearchIcon className="h-[18px] w-[18px] flex-shrink-0 text-ink-soft" strokeWidth={1.8} />
+              <div className="ml-3 flex flex-1 items-center">
+                <div className="flex flex-1 flex-col">
+                  <span className="caption text-[10px] tracking-[0.1em]">Area</span>
+                  <span className="text-[13px] text-ink-soft">Lekki, Yaba, Maitama...</span>
+                </div>
+                <div className="divider-v mx-3 h-8" />
+                <div className="flex flex-1 flex-col">
+                  <span className="caption text-[10px] tracking-[0.1em]">Budget</span>
+                  <span className="text-[13px] text-ink-soft">₦5k – ₦25k</span>
+                </div>
+              </div>
+              <SlidersHorizontal
+                className="ml-2 h-[18px] w-[18px] flex-shrink-0 text-ink-soft"
+                strokeWidth={1.8}
+              />
+            </button>
+          </div>
+
+          {/* Desktop floating credit pill */}
+          <div className="absolute right-10 top-28 hidden lg:flex lg:items-center lg:gap-2 lg:rounded-full lg:bg-paper/85 lg:px-3.5 lg:py-2 lg:shadow-rest lg:backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-verified" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.1em] text-ink-soft">
+              Lekki Phase 1, Lagos
+            </span>
+          </div>
+        </div>
       </section>
 
       {/* Category row (auto-scroll left to right) */}
